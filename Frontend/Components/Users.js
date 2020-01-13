@@ -8,6 +8,8 @@ const ALL_USERS_QUERY = gql`
       id
       name
       email
+      smallImage
+      largeImage
     }
   }
 `;
@@ -22,6 +24,7 @@ class Users extends Component {
               <div>
                 {data.users.map(user => (
                   <div key={user.id}>
+                    <img src={user.smallImage} alt={user.name} />
                     <h1>{user.name}</h1>
                     <h2>{user.email}</h2>
                   </div>

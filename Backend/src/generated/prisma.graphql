@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/ryankeeter/dbService/dev
-# timestamp: Mon Dec 30 2019 05:21:51 GMT+0000 (Coordinated Universal Time)
+# timestamp: Sun Jan 12 2020 19:21:08 GMT-0600 (Central Standard Time)
 
 type AggregateUser {
   count: Int!
@@ -72,6 +72,8 @@ type User implements Node {
   id: ID!
   name: String!
   email: String!
+  smallImage: String
+  largeImage: String
 }
 
 """A connection to a list of items."""
@@ -88,6 +90,8 @@ input UserCreateInput {
   id: ID
   name: String!
   email: String!
+  smallImage: String
+  largeImage: String
 }
 
 """An edge in a connection."""
@@ -106,12 +110,18 @@ enum UserOrderByInput {
   name_DESC
   email_ASC
   email_DESC
+  smallImage_ASC
+  smallImage_DESC
+  largeImage_ASC
+  largeImage_DESC
 }
 
 type UserPreviousValues {
   id: ID!
   name: String!
   email: String!
+  smallImage: String
+  largeImage: String
 }
 
 type UserSubscriptionPayload {
@@ -154,11 +164,15 @@ input UserSubscriptionWhereInput {
 input UserUpdateInput {
   name: String
   email: String
+  smallImage: String
+  largeImage: String
 }
 
 input UserUpdateManyMutationInput {
   name: String
   email: String
+  smallImage: String
+  largeImage: String
 }
 
 input UserWhereInput {
@@ -290,6 +304,86 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   email_not_ends_with: String
+  smallImage: String
+
+  """All values that are not equal to given value."""
+  smallImage_not: String
+
+  """All values that are contained in given list."""
+  smallImage_in: [String!]
+
+  """All values that are not contained in given list."""
+  smallImage_not_in: [String!]
+
+  """All values less than the given value."""
+  smallImage_lt: String
+
+  """All values less than or equal the given value."""
+  smallImage_lte: String
+
+  """All values greater than the given value."""
+  smallImage_gt: String
+
+  """All values greater than or equal the given value."""
+  smallImage_gte: String
+
+  """All values containing the given string."""
+  smallImage_contains: String
+
+  """All values not containing the given string."""
+  smallImage_not_contains: String
+
+  """All values starting with the given string."""
+  smallImage_starts_with: String
+
+  """All values not starting with the given string."""
+  smallImage_not_starts_with: String
+
+  """All values ending with the given string."""
+  smallImage_ends_with: String
+
+  """All values not ending with the given string."""
+  smallImage_not_ends_with: String
+  largeImage: String
+
+  """All values that are not equal to given value."""
+  largeImage_not: String
+
+  """All values that are contained in given list."""
+  largeImage_in: [String!]
+
+  """All values that are not contained in given list."""
+  largeImage_not_in: [String!]
+
+  """All values less than the given value."""
+  largeImage_lt: String
+
+  """All values less than or equal the given value."""
+  largeImage_lte: String
+
+  """All values greater than the given value."""
+  largeImage_gt: String
+
+  """All values greater than or equal the given value."""
+  largeImage_gte: String
+
+  """All values containing the given string."""
+  largeImage_contains: String
+
+  """All values not containing the given string."""
+  largeImage_not_contains: String
+
+  """All values starting with the given string."""
+  largeImage_starts_with: String
+
+  """All values not starting with the given string."""
+  largeImage_not_starts_with: String
+
+  """All values ending with the given string."""
+  largeImage_ends_with: String
+
+  """All values not ending with the given string."""
+  largeImage_not_ends_with: String
 }
 
 input UserWhereUniqueInput {
