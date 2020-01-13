@@ -3,7 +3,12 @@ import CreateUser from "../Components/CreateUser";
 
 class createUser extends Component {
   render() {
-    return <CreateUser />;
+    return (
+      <>
+        <h2>Create User</h2>
+        <CreateUser />
+      </>
+    );
   }
 }
 

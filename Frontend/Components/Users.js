@@ -36,3 +36,4 @@ class Users extends Component {
 }
 
 export default Users;
+export { ALL_USERS_QUERY };
