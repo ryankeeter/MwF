@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import gql from "graphql-tag";
+import Link from "next/link";
 import { Query } from "react-apollo";
 
 const ALL_USERS_QUERY = gql`
@@ -27,6 +28,14 @@ class Users extends Component {
                     <img src={user.smallImage} alt={user.name} />
                     <h1>{user.name}</h1>
                     <h2>{user.email}</h2>
+                    <Link
+                      href={{
+                        pathname: "./updateUser",
+                        query: { id: user.id }
+                      }}
+                    >
+                      <a>Edit User</a>
+                    </Link>
                   </div>
                 ))}
               </div>

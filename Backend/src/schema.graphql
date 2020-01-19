@@ -7,8 +7,10 @@ type Mutation {
     smallImage: String
     largeImage: String
   ): User!
+  updateUser(id: ID!, name: String, email: String): User!
 }
 
 type Query {
   users: [User]!
+  user(where: UserWhereUniqueInput!): User
 }
