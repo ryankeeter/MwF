@@ -2,6 +2,14 @@ type User {
   id: ID! @id
   name: String!
   email: String!
-  smallImage: String
-  largeImage: String
+  avatar: String
+}
+
+type Meme {
+  id: ID! @id
+  memeId: String!
+  link: String!
+  upVotes: Int!
+  downVotes: Int!
+  user: User!
 }

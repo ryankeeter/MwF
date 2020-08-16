@@ -6,7 +6,9 @@ const queries = {
 
     return users;
   },
-  user: forwardTo("db")
+  user: forwardTo("db"),
+
+  memes: forwardTo("db")
 
   /*async user(parent, args, ctx, info) {
     const where = { where: { id: args.id } };

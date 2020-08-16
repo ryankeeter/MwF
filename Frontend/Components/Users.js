@@ -26,7 +26,7 @@ class Users extends Component {
                 {data.users.map(user => (
                   <div key={user.id}>
                     <img src={user.smallImage} alt={user.name} />
-                    <h1>{user.name}</h1>
+                    <Link href={{pathname: "./user", query: {id: user.id}}}><a>{user.name}</a></Link>
                     <h2>{user.email}</h2>
                     <Link
                       href={{
@@ -36,6 +36,7 @@ class Users extends Component {
                     >
                       <a>Edit User</a>
                     </Link>
+                    <button>Delete User</button>
                   </div>
                 ))}
               </div>

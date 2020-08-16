@@ -19,6 +19,12 @@ const mutations = {
       },
       info
     );
+  },
+  async createMeme(parent, args, ctx, info){
+    const newMeme = await ctx.db.mutation.createMeme({
+      data: { ...args}
+    }, info);
+    return newMeme;
   }
 };
 module.exports = mutations;
