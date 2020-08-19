@@ -204,8 +204,5 @@ module.exports = {
   getThunderDungeonMemes,
   get9GagMemes,
   getChiveMemes
-<<<<<<< HEAD
 };
-=======
-};
->>>>>>> master
+
