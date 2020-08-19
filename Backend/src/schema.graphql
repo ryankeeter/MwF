@@ -7,9 +7,7 @@ type Mutation {
     smallImage: String
     largeImage: String
   ): User!
-
   updateUser(id: ID!, name: String, email: String): User!
-
   createMeme(
     cloudinaryId: String!
     cloudinaryLink: String!
@@ -20,8 +18,5 @@ type Mutation {
 
 type Query {
   users: [User]!
-
   user(where: UserWhereUniqueInput!): User
-
-  memes: [Meme]!
 }
