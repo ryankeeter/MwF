@@ -1,5 +1,9 @@
 # source: https://us1.prisma.sh/ryankeeter/dbService/dev
-# timestamp: Tue Aug 11 2020 14:48:54 GMT-0500 (Central Daylight Time)
+# timestamp: Sun Aug 23 2020 18:33:21 GMT-0500 (Central Daylight Time)
+
+type AggregateMeme {
+  count: Int!
+}
 
 type AggregateUser {
   count: Int!
@@ -16,12 +20,308 @@ Long can represent values between -(2^63) and 2^63 - 1.
 """
 scalar Long
 
+type Meme implements Node {
+  id: ID!
+  memeId: String!
+  link: String!
+  upVotes: Int!
+  downVotes: Int!
+  user: User!
+}
+
+"""A connection to a list of items."""
+type MemeConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [MemeEdge]!
+  aggregate: AggregateMeme!
+}
+
+input MemeCreateInput {
+  id: ID
+  memeId: String!
+  link: String!
+  upVotes: Int!
+  downVotes: Int!
+  user: UserCreateOneInput!
+}
+
+"""An edge in a connection."""
+type MemeEdge {
+  """The item at the end of the edge."""
+  node: Meme!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum MemeOrderByInput {
+  id_ASC
+  id_DESC
+  memeId_ASC
+  memeId_DESC
+  link_ASC
+  link_DESC
+  upVotes_ASC
+  upVotes_DESC
+  downVotes_ASC
+  downVotes_DESC
+}
+
+type MemePreviousValues {
+  id: ID!
+  memeId: String!
+  link: String!
+  upVotes: Int!
+  downVotes: Int!
+}
+
+type MemeSubscriptionPayload {
+  mutation: MutationType!
+  node: Meme
+  updatedFields: [String!]
+  previousValues: MemePreviousValues
+}
+
+input MemeSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [MemeSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [MemeSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [MemeSubscriptionWhereInput!]
+
+  """The subscription event gets dispatched when it's listed in mutation_in"""
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: MemeWhereInput
+}
+
+input MemeUpdateInput {
+  memeId: String
+  link: String
+  upVotes: Int
+  downVotes: Int
+  user: UserUpdateOneRequiredInput
+}
+
+input MemeUpdateManyMutationInput {
+  memeId: String
+  link: String
+  upVotes: Int
+  downVotes: Int
+}
+
+input MemeWhereInput {
+  """Logical AND on all given filters."""
+  AND: [MemeWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [MemeWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [MemeWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  memeId: String
+
+  """All values that are not equal to given value."""
+  memeId_not: String
+
+  """All values that are contained in given list."""
+  memeId_in: [String!]
+
+  """All values that are not contained in given list."""
+  memeId_not_in: [String!]
+
+  """All values less than the given value."""
+  memeId_lt: String
+
+  """All values less than or equal the given value."""
+  memeId_lte: String
+
+  """All values greater than the given value."""
+  memeId_gt: String
+
+  """All values greater than or equal the given value."""
+  memeId_gte: String
+
+  """All values containing the given string."""
+  memeId_contains: String
+
+  """All values not containing the given string."""
+  memeId_not_contains: String
+
+  """All values starting with the given string."""
+  memeId_starts_with: String
+
+  """All values not starting with the given string."""
+  memeId_not_starts_with: String
+
+  """All values ending with the given string."""
+  memeId_ends_with: String
+
+  """All values not ending with the given string."""
+  memeId_not_ends_with: String
+  link: String
+
+  """All values that are not equal to given value."""
+  link_not: String
+
+  """All values that are contained in given list."""
+  link_in: [String!]
+
+  """All values that are not contained in given list."""
+  link_not_in: [String!]
+
+  """All values less than the given value."""
+  link_lt: String
+
+  """All values less than or equal the given value."""
+  link_lte: String
+
+  """All values greater than the given value."""
+  link_gt: String
+
+  """All values greater than or equal the given value."""
+  link_gte: String
+
+  """All values containing the given string."""
+  link_contains: String
+
+  """All values not containing the given string."""
+  link_not_contains: String
+
+  """All values starting with the given string."""
+  link_starts_with: String
+
+  """All values not starting with the given string."""
+  link_not_starts_with: String
+
+  """All values ending with the given string."""
+  link_ends_with: String
+
+  """All values not ending with the given string."""
+  link_not_ends_with: String
+  upVotes: Int
+
+  """All values that are not equal to given value."""
+  upVotes_not: Int
+
+  """All values that are contained in given list."""
+  upVotes_in: [Int!]
+
+  """All values that are not contained in given list."""
+  upVotes_not_in: [Int!]
+
+  """All values less than the given value."""
+  upVotes_lt: Int
+
+  """All values less than or equal the given value."""
+  upVotes_lte: Int
+
+  """All values greater than the given value."""
+  upVotes_gt: Int
+
+  """All values greater than or equal the given value."""
+  upVotes_gte: Int
+  downVotes: Int
+
+  """All values that are not equal to given value."""
+  downVotes_not: Int
+
+  """All values that are contained in given list."""
+  downVotes_in: [Int!]
+
+  """All values that are not contained in given list."""
+  downVotes_not_in: [Int!]
+
+  """All values less than the given value."""
+  downVotes_lt: Int
+
+  """All values less than or equal the given value."""
+  downVotes_lte: Int
+
+  """All values greater than the given value."""
+  downVotes_gt: Int
+
+  """All values greater than or equal the given value."""
+  downVotes_gte: Int
+  user: UserWhereInput
+}
+
+input MemeWhereUniqueInput {
+  id: ID
+}
+
 type Mutation {
+  createMeme(data: MemeCreateInput!): Meme!
   createUser(data: UserCreateInput!): User!
+  updateMeme(data: MemeUpdateInput!, where: MemeWhereUniqueInput!): Meme
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  deleteMeme(where: MemeWhereUniqueInput!): Meme
   deleteUser(where: UserWhereUniqueInput!): User
+  upsertMeme(where: MemeWhereUniqueInput!, create: MemeCreateInput!, update: MemeUpdateInput!): Meme!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  updateManyMemes(data: MemeUpdateManyMutationInput!, where: MemeWhereInput): BatchPayload!
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  deleteManyMemes(where: MemeWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
 }
 
@@ -52,9 +352,21 @@ type PageInfo {
   endCursor: String
 }
 
+enum Permission {
+  USER
+  ADMIN
+  MEMECREATE
+  MEMEUPDATE
+  MEMEDELETE
+  PERMISSIONUPDATE
+}
+
 type Query {
+  memes(where: MemeWhereInput, orderBy: MemeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Meme]!
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  meme(where: MemeWhereUniqueInput!): Meme
   user(where: UserWhereUniqueInput!): User
+  memesConnection(where: MemeWhereInput, orderBy: MemeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): MemeConnection!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
 
   """Fetches an object given its ID"""
@@ -65,6 +377,7 @@ type Query {
 }
 
 type Subscription {
+  meme(where: MemeSubscriptionWhereInput): MemeSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
 
@@ -72,8 +385,11 @@ type User implements Node {
   id: ID!
   name: String!
   email: String!
-  smallImage: String
-  largeImage: String
+  avatar: String
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: [Permission!]!
 }
 
 """A connection to a list of items."""
@@ -90,8 +406,20 @@ input UserCreateInput {
   id: ID
   name: String!
   email: String!
-  smallImage: String
-  largeImage: String
+  avatar: String
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: UserCreatepermissionsInput
+}
+
+input UserCreateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreatepermissionsInput {
+  set: [Permission!]
 }
 
 """An edge in a connection."""
@@ -110,18 +438,25 @@ enum UserOrderByInput {
   name_DESC
   email_ASC
   email_DESC
-  smallImage_ASC
-  smallImage_DESC
-  largeImage_ASC
-  largeImage_DESC
+  avatar_ASC
+  avatar_DESC
+  password_ASC
+  password_DESC
+  resetToken_ASC
+  resetToken_DESC
+  resetTokenExpiry_ASC
+  resetTokenExpiry_DESC
 }
 
 type UserPreviousValues {
   id: ID!
   name: String!
   email: String!
-  smallImage: String
-  largeImage: String
+  avatar: String
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: [Permission!]!
 }
 
 type UserSubscriptionPayload {
@@ -161,18 +496,50 @@ input UserSubscriptionWhereInput {
   node: UserWhereInput
 }
 
+input UserUpdateDataInput {
+  name: String
+  email: String
+  avatar: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: UserUpdatepermissionsInput
+}
+
 input UserUpdateInput {
   name: String
   email: String
-  smallImage: String
-  largeImage: String
+  avatar: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: UserUpdatepermissionsInput
 }
 
 input UserUpdateManyMutationInput {
   name: String
   email: String
-  smallImage: String
-  largeImage: String
+  avatar: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: UserUpdatepermissionsInput
+}
+
+input UserUpdateOneRequiredInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
+}
+
+input UserUpdatepermissionsInput {
+  set: [Permission!]
+}
+
+input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
 }
 
 input UserWhereInput {
@@ -304,88 +671,151 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   email_not_ends_with: String
-  smallImage: String
+  avatar: String
 
   """All values that are not equal to given value."""
-  smallImage_not: String
+  avatar_not: String
 
   """All values that are contained in given list."""
-  smallImage_in: [String!]
+  avatar_in: [String!]
 
   """All values that are not contained in given list."""
-  smallImage_not_in: [String!]
+  avatar_not_in: [String!]
 
   """All values less than the given value."""
-  smallImage_lt: String
+  avatar_lt: String
 
   """All values less than or equal the given value."""
-  smallImage_lte: String
+  avatar_lte: String
 
   """All values greater than the given value."""
-  smallImage_gt: String
+  avatar_gt: String
 
   """All values greater than or equal the given value."""
-  smallImage_gte: String
+  avatar_gte: String
 
   """All values containing the given string."""
-  smallImage_contains: String
+  avatar_contains: String
 
   """All values not containing the given string."""
-  smallImage_not_contains: String
+  avatar_not_contains: String
 
   """All values starting with the given string."""
-  smallImage_starts_with: String
+  avatar_starts_with: String
 
   """All values not starting with the given string."""
-  smallImage_not_starts_with: String
+  avatar_not_starts_with: String
 
   """All values ending with the given string."""
-  smallImage_ends_with: String
+  avatar_ends_with: String
 
   """All values not ending with the given string."""
-  smallImage_not_ends_with: String
-  largeImage: String
+  avatar_not_ends_with: String
+  password: String
 
   """All values that are not equal to given value."""
-  largeImage_not: String
+  password_not: String
 
   """All values that are contained in given list."""
-  largeImage_in: [String!]
+  password_in: [String!]
 
   """All values that are not contained in given list."""
-  largeImage_not_in: [String!]
+  password_not_in: [String!]
 
   """All values less than the given value."""
-  largeImage_lt: String
+  password_lt: String
 
   """All values less than or equal the given value."""
-  largeImage_lte: String
+  password_lte: String
 
   """All values greater than the given value."""
-  largeImage_gt: String
+  password_gt: String
 
   """All values greater than or equal the given value."""
-  largeImage_gte: String
+  password_gte: String
 
   """All values containing the given string."""
-  largeImage_contains: String
+  password_contains: String
 
   """All values not containing the given string."""
-  largeImage_not_contains: String
+  password_not_contains: String
 
   """All values starting with the given string."""
-  largeImage_starts_with: String
+  password_starts_with: String
 
   """All values not starting with the given string."""
-  largeImage_not_starts_with: String
+  password_not_starts_with: String
 
   """All values ending with the given string."""
-  largeImage_ends_with: String
+  password_ends_with: String
 
   """All values not ending with the given string."""
-  largeImage_not_ends_with: String
+  password_not_ends_with: String
+  resetToken: String
+
+  """All values that are not equal to given value."""
+  resetToken_not: String
+
+  """All values that are contained in given list."""
+  resetToken_in: [String!]
+
+  """All values that are not contained in given list."""
+  resetToken_not_in: [String!]
+
+  """All values less than the given value."""
+  resetToken_lt: String
+
+  """All values less than or equal the given value."""
+  resetToken_lte: String
+
+  """All values greater than the given value."""
+  resetToken_gt: String
+
+  """All values greater than or equal the given value."""
+  resetToken_gte: String
+
+  """All values containing the given string."""
+  resetToken_contains: String
+
+  """All values not containing the given string."""
+  resetToken_not_contains: String
+
+  """All values starting with the given string."""
+  resetToken_starts_with: String
+
+  """All values not starting with the given string."""
+  resetToken_not_starts_with: String
+
+  """All values ending with the given string."""
+  resetToken_ends_with: String
+
+  """All values not ending with the given string."""
+  resetToken_not_ends_with: String
+  resetTokenExpiry: Float
+
+  """All values that are not equal to given value."""
+  resetTokenExpiry_not: Float
+
+  """All values that are contained in given list."""
+  resetTokenExpiry_in: [Float!]
+
+  """All values that are not contained in given list."""
+  resetTokenExpiry_not_in: [Float!]
+
+  """All values less than the given value."""
+  resetTokenExpiry_lt: Float
+
+  """All values less than or equal the given value."""
+  resetTokenExpiry_lte: Float
+
+  """All values greater than the given value."""
+  resetTokenExpiry_gt: Float
+
+  """All values greater than or equal the given value."""
+  resetTokenExpiry_gte: Float
 }
 
 input UserWhereUniqueInput {
   id: ID
+  email: String
 }

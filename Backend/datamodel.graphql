@@ -1,0 +1,28 @@
+enum Permission {
+  USER
+  ADMIN
+  MEMECREATE
+  MEMEUPDATE
+  MEMEDELETE
+  PERMISSIONUPDATE
+}
+
+type User {
+  id: ID! @id
+  name: String!
+  email: String! @unique
+  avatar: String
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: [Permission] @scalarList(strategy: RELATION)
+}
+
+type Meme {
+  id: ID! @id
+  memeId: String!
+  link: String!
+  upVotes: Int!
+  downVotes: Int!
+  user: User!
+}
