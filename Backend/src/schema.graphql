@@ -4,10 +4,10 @@ type Mutation {
   createUser(
     name: String!
     email: String!
-    smallImage: String
-    largeImage: String
+    avatar: String
   ): User!
   updateUser(id: ID!, name: String, email: String): User!
+  signup(email: String!, password: String!, name: String!): User!
   createMeme(
     cloudinaryId: String!
     cloudinaryLink: String!
@@ -19,4 +19,5 @@ type Mutation {
 type Query {
   users: [User]!
   user(where: UserWhereUniqueInput!): User
+  memes: [Meme]!
 }
