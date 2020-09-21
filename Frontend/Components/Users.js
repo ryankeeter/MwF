@@ -9,8 +9,6 @@ const ALL_USERS_QUERY = gql`
       id
       name
       email
-      smallImage
-      largeImage
     }
   }
 `;
